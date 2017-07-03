@@ -10,7 +10,7 @@ controller.post('/', async (req, res) => {
 });
 
 controller.get('/new', (req, res) => {
-    res.render('candidate/new');
+    res.render('candidate/new', { js: '/build/js/candidate.js' });
 });
 
 export default controller;
