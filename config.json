@@ -1,3 +1,8 @@
 {
-    "connectionString": "mongodb://website:qaWizADd36DaivAm@cluster0-shard-00-00-tdemg.mongodb.net:27017,cluster0-shard-00-01-tdemg.mongodb.net:27017,cluster0-shard-00-02-tdemg.mongodb.net:27017/CanIT?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin"
+    "connectionString": "mongodb://website:qaWizADd36DaivAm@cluster0-shard-00-00-tdemg.mongodb.net:27017,cluster0-shard-00-01-tdemg.mongodb.net:27017,cluster0-shard-00-02-tdemg.mongodb.net:27017/CanIT?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin",
+    "mail": {
+        "service": "gmail",
+        "username": "canit.infotrack@gmail.com",
+        "password": "InfoTrack@135135"
+    }
 }
