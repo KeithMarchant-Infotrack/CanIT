@@ -1,32 +1,36 @@
 import * as express from 'express';
 import roomModel from '../models/room.model';
 
-const roomRouter = express.Router();
+const roomController = express.Router();
 
-roomRouter.post('/', async (req, res) => {
+roomController.post('/', async (req, res) => {
     const newRoom = await roomModel.create(req.body);
 
     res.status(200).json(newRoom);
 });
 
-roomRouter.get('/', async (req, res) => {
+roomController.get('/', async (req, res) => {
     const allRooms = await roomModel.find(req.body);
 
     res.status(200).json(allRooms);
 });
 
-roomRouter.delete('/', async (req, res) => {
-    const delRoom = await roomModel.remove(req.body);
+roomController.get('/:id', async (req, res) => {
+    const foundRoom = await roomModel.findById({_id: req.params.id});
+
+    res.status(200).json(foundRoom);
+});
+
+roomController.delete('/:id', async (req, res) => {
+    const delRoom = await roomModel.remove({_id: req.params.id});
 
     res.status(200).json(delRoom);
 });
 
-/*
-roomRouter.put('/', async (req, res) => {
-    const editRoom = await roomModel.update(req.body);
+roomController.put('/:id', async (req, res) => {
+    const editRoom = await roomModel.findOneAndUpdate({_id: req.params.id}, req.body);
 
     res.status(200).json(editRoom);
 });
-*/
 
-export default roomRouter;
+export default roomController;

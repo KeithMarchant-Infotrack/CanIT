@@ -2,6 +2,12 @@ import { Document, Schema, Model, model } from 'mongoose';
 
 interface IBooking {
     email: string;
+    name: string;
+    time_start: Date;
+    time_end: Date;
+    persons: number;
+    room_id: number;
+    user_id: number;
 }
 
 interface IBookingModel extends IBooking, Document { }
@@ -9,24 +15,29 @@ interface IBookingModel extends IBooking, Document { }
 const bookingSchema = new Schema({
     name: {
         type: String,
-        Required: ''
-    },
-    booked_by: {
-        type: String,
+        required: true
     },
     time_start: {
-        type: Number,
+        type: Date,
+        required: true
     },
     time_end: {
-        type: Number,
+        type: Date,
+        required: true
     },
     persons: {
-        type: Number,
+        type: Number
     },
     room_id: {
-        type: Number,
-        Required: ''
-    },
+        type: Schema.Types.ObjectId,
+        ref: 'roomSchema',
+        required: true
+    }
+    /* user_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'userSchema',
+        required: true
+    } */
 
 });
 
