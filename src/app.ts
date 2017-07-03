@@ -1,11 +1,17 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as mongoose from 'mongoose';
+import * as expressHandlebars from 'express-handlebars';
 import candidateController from './controllers/candidate.controller';
 
 const app = express();
 const port = 3000;
 const config = require('./config.json');
+
+// Configure views
+
+app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
 // Establish database connection
 

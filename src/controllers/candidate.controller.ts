@@ -9,4 +9,8 @@ controller.post('/', async (req, res) => {
     res.status(200).json(newCandidate);
 });
 
+controller.get('/new', (req, res) => {
+    res.render('candidate/new');
+});
+
 export default controller;
