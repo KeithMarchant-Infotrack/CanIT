@@ -6,7 +6,7 @@ import candidateController from './controllers/candidate.controller';
 
 const app = express();
 const port = 3000;
-const config = require('./config.json');
+const config = require('../config.json');
 
 // Configure views
 
