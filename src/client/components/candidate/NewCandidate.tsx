@@ -22,8 +22,6 @@ class NewCandidate extends React.Component<{}, IState> {
             },
             body: JSON.stringify(this.state)
         });
-
-        console.log('created!');
     }
 
     public onChangeEmail<T>(event: React.FormEvent<HTMLInputElement>) {
