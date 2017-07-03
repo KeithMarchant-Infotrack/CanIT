@@ -16,5 +16,10 @@
     "@types/mongoose": "^4.7.18",
     "tslint": "^5.4.3",
     "typescript": "^2.4.1"
+  },
+  "scripts": {
+    "compile": "tsc -p . ",
+    "config": "copy src\\config.json out\\config.json",
+    "build": "npm run config | npm run compile"
   }
 }
