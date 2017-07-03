@@ -1,7 +1,9 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as mongoose from 'mongoose';
+import bookingController from './controllers/booking.controller';
 import candidateController from './controllers/candidate.controller';
+import roomController from './controllers/room.controller';
 
 const app = express();
 const port = 3000;
@@ -20,6 +22,8 @@ app.use(bodyParser());
 // Register controllers
 
 app.use('/candidates', candidateController);
+app.use('/rooms', roomController);
+app.use('/bookings', bookingController);
 
 // Health check endpoint
 

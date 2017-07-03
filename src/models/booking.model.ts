@@ -7,7 +7,27 @@ interface IBooking {
 interface IBookingModel extends IBooking, Document { }
 
 const bookingSchema = new Schema({
-    email: String
+    name: {
+        type: String,
+        Required: ''
+    },
+    booked_by: {
+        type: String,
+    },
+    time_start: {
+        type: Number,
+    },
+    time_end: {
+        type: Number,
+    },
+    persons: {
+        type: Number,
+    },
+    room_id: {
+        type: Number,
+        Required: ''
+    },
+
 });
 
 const bookingModel = model<IBookingModel>('booking', bookingSchema);

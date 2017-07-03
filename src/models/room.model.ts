@@ -7,7 +7,13 @@ interface IRoom {
 interface IRoomModel extends IRoom, Document { }
 
 const roomSchema = new Schema({
-    email: String
+    name: {
+        type: String,
+        Required: ''
+    },
+    capacity: {
+        type: Number,
+    }
 });
 
 const roomModel = model<IRoomModel>('Room', roomSchema);
