@@ -36,13 +36,17 @@ app.use(bodyParser.json());
 app.use('/candidates', candidateController);
 app.use('/rooms', roomController);
 app.use('/bookings', bookingController);
-var ac = require('./controllers/authentication.controller.js');
+const ac = require('./controllers/authentication.controller.js');
 app.use('/register/:userName/:email', ac.register);
 
-// Health check endpoint
+// Generic endpoints
 
 app.get('/healthcheck', (req, res) => {
     res.send('I\'m alive!');
+});
+
+app.get('/', (req, res) => {
+    res.redirect('/candidates');
 });
 
 // Run the application
