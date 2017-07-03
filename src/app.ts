@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as mongoose from 'mongoose';
-import candidateRouter from './routers/candidate.router';
+import candidateController from './controllers/candidate.controller';
 
 const app = express();
 const port = 3000;
@@ -17,9 +17,9 @@ mongoose.connection.on('open', () => console.log('connection successful'));
 
 app.use(bodyParser());
 
-// Register routers
+// Register controllers
 
-app.use('/candidates', candidateRouter);
+app.use('/candidates', candidateController);
 
 // Health check endpoint
 

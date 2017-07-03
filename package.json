@@ -19,7 +19,7 @@
   },
   "scripts": {
     "compile": "tsc -p . ",
-    "config": "copy src\\config.json out\\config.json",
+    "config": "xcopy src\\config.json out\\",
     "build": "npm run config | npm run compile"
   }
 }
