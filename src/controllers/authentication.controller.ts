@@ -1,5 +1,5 @@
 import * as express from 'express';
-import authModel from '../models/authentication.model';
+import candidateModel from '../models/candidate.model';
 //import * as jwt from 'jwt-simple';
 
 var jwt = require('jwt-simple');
@@ -33,11 +33,17 @@ authController.get('/:userName/:email',  (req, res, next) => {
 });*/
 
 module.exports = {
-    register : function(req:express.Request, res:express.Response, next:express.NextFunction){
-        res.status(200)
-            .json(registerUser(req))
-            .end();
-    }
+    register : async function(req:express.Request, res:express.Response, next:express.NextFunction){
+
+    var user = registerUser(req);
+
+    var newCandidate = await candidateModel.create(user);
+    console.log(newCandidate);
+
+    res.status(200)
+        .json(newCandidate)
+        .end();
+}
 
     /*authorise : function(req:express.Request, res:express.Response, next:express.NextFunction){
         if(!isAuthorised(req)){
@@ -58,7 +64,7 @@ module.exports = {
 var registerUser = function (req:express.Request) {
     var token = generateToken(req.params.email);
     var user = {
-        userName: req.params.userName,
+        //userName: req.params.userName,
         email: req.params.email,
         token: token
     }
