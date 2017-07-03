@@ -1,9 +1,9 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import mongoose = require('mongoose');
 import * as expressHandlebars from 'express-handlebars';
 import candidateController from './controllers/candidate.controller';
 import authController from './controllers/authentication.controller';
+import mongoose = require('mongoose');
 
 const app = express();
 const port = 3000;
@@ -27,7 +27,7 @@ mongoose.connection.on('open', () => console.log('connection successful'));
 
 // Register middleware modules
 
-app.use(bodyParser());
+app.use(bodyParser.json());
 
 // Register controllers
 
