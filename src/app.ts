@@ -38,13 +38,17 @@ app.use('/rooms', roomController);
 app.use('/bookings', bookingController);
 
 // TODO AMW this doesn't look like the right way to include a router, but i can't get it working the other way dammit
-var ac = require('./controllers/authentication.controller.js');
+const ac = require('./controllers/authentication.controller.js');
 app.use('/register/:userName/:email', ac.register);
 
-// Health check endpoint
+// Generic endpoints
 
 app.get('/healthcheck', (req, res) => {
     res.send('I\'m alive!');
+});
+
+app.get('/', (req, res) => {
+    res.redirect('/candidates');
 });
 
 // Run the application
