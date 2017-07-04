@@ -1,8 +1,12 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import bookingController from './controllers/booking.controller';
 import * as expressHandlebars from 'express-handlebars';
+import bookingController from './controllers/booking.controller';
 import candidateController from './controllers/candidate.controller';
+import roomController from './controllers/room.controller';
 import authController from './controllers/authentication.controller';
+import roomController from './controllers/room.controller';
 import mongoose = require('mongoose');
 
 const app = express();
@@ -32,10 +36,10 @@ app.use(bodyParser.json());
 // Register controllers
 
 app.use('/candidates', candidateController);
+app.use('/rooms', roomController);
+app.use('/bookings', bookingController);
 
-// TODO AMW this doesn't look like the right way to include a router, but i can't get it working the other way dammit
-const ac = require('./controllers/authentication.controller.js');
-app.use('/register/:userName/:email', ac.register);
+
 
 // Generic endpoints
 
