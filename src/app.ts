@@ -5,7 +5,7 @@ import * as expressHandlebars from 'express-handlebars';
 import bookingController from './controllers/booking.controller';
 import candidateController from './controllers/candidate.controller';
 import roomController from './controllers/room.controller';
-import authController from './controllers/authentication.controller';
+import authController from './controllers/auth.controller';
 import roomController from './controllers/room.controller';
 import mongoose = require('mongoose');
 
@@ -37,6 +37,7 @@ app.use(bodyParser.json());
 
 app.use('/candidates', candidateController);
 app.use('/rooms', roomController);
+app.use('/auth', authController);
 app.use('/bookings', bookingController);
 
 
