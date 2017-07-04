@@ -20,6 +20,4 @@ const candidateSchema = new Schema({
     next();
 });
 
-const candidateModel = model<ICandidateModel>('Candidate', candidateSchema);
-
-export default candidateModel;
+export default model<ICandidateModel>('Candidate', candidateSchema);
