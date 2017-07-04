@@ -1,10 +1,8 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import bookingController from './controllers/booking.controller';
 import * as expressHandlebars from 'express-handlebars';
 import bookingController from './controllers/booking.controller';
 import candidateController from './controllers/candidate.controller';
-import roomController from './controllers/room.controller';
 import authController from './controllers/auth.controller';
 import roomController from './controllers/room.controller';
 import mongoose = require('mongoose');
@@ -39,8 +37,6 @@ app.use('/candidates', candidateController);
 app.use('/rooms', roomController);
 app.use('/auth', authController);
 app.use('/bookings', bookingController);
-
-
 
 // Generic endpoints
 

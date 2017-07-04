@@ -2,8 +2,11 @@ import * as express from 'express';
 import candidateModel from '../models/candidate.model';
 import { Mailer } from '../helpers/mailer.helper';
 import * as multer from 'multer';
+import * as fs from 'fs';
+import * as path from 'path';
 
-const upload = multer({ dest: 'uploads/' });
+const destination = 'uploads';
+const upload = multer({ dest: destination });
 
 const controller = express.Router();
 
@@ -36,8 +39,9 @@ controller.get('/:userId', async (req, res) => {
     res.render('candidate/me', candidate);
 });
 
-controller.post('/:userId/upload', upload.single(), async (req, res) => {
-    const candidate = await candidateModel.findByIdAndUpdate(req.params.userId, { file: req.file.path }, { new: true });
+controller.post('/:userId/upload', upload.single('project'), async (req, res) => {
+    const file = req.file.filename;
+    const candidate = await candidateModel.findByIdAndUpdate(req.params.userId, { file }, { new: true });
 
     if (!candidate) {
         res.status(404);
@@ -56,6 +60,18 @@ controller.get('/:userId/manage', async (req, res) => {
     }
 
     res.render('candidate/manage', candidate);
+});
+
+controller.get('/:userId/project', async (req, res) => {
+    const candidate = await candidateModel.findById(req.params.userId);
+
+    if (!candidate) {
+        res.status(404);
+        return;
+    }
+
+    res.setHeader('Content-Type', 'application/zip');
+    fs.createReadStream(path.join(destination, candidate.file)).pipe(res);
 });
 
 export default controller;

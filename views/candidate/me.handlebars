@@ -2,9 +2,19 @@
     <tr>
         <th>ID</th>
         <th>Email</th>
+        <th>Project</th>
     </tr>
     <tr>
         <td>{{id}}</td>
         <td>{{email}}</td>
+        <td>
+            <form action="/candidates/{{id}}/upload" method="POST" enctype="multipart/form-data" target="dummyframe">
+                <div className='form-group'>
+                    <input type="file" name="project" accept=".zip" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-default">Upload</button>
+            </form>
+        </td>
     </tr>
 </table>
+<iframe width="0" height="0" border="0" name="dummyframe" id="dummyframe"></iframe>
