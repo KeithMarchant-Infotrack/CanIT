@@ -7,14 +7,14 @@ export default async function(req: express.Request, res: express.Response, next:
     const token = RequestHelper.getBearerToken(req);
 
     if (!token) {
-        res.status(401);
+        res.status(401).send();
         return;
     }
 
     const candidate = await CandidateModel.findOne({ token });
 
     if (!candidate) {
-        res.status(401);
+        res.status(401).send();
         return;
     }
 
