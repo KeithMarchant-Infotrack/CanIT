@@ -5,8 +5,8 @@ const authController = express.Router();
 
 authController.post('/', async (req, res) => {
     if(req.body.token){
-        var candidate = await candidateModel.find(req.body);
-        if(candidate){
+        var candidate = await candidateModel.findOne(req.body);
+        if(candidate && candidate.token == req.body.token){
             res.status(200).json({authorised:true}).end();
         }
     }
@@ -15,7 +15,7 @@ authController.post('/', async (req, res) => {
 
 authController.post('/gettoken', async (req, res) => {
     const candidate = await candidateModel.findOne(req.body);
-    if(candidate){
+    if(candidate && candidate.token){
         res.status(200).json({authorised:true, token:candidate.token}).end();
     } else {
         res.status(401).json({authorised:false}).end();
