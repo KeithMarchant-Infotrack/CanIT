@@ -1,0 +1,18 @@
+<div class="table requests-table">
+    <div class="row table-header">
+        <div class="col-md-2 header-item">Timestamp</div>
+        <div class="col-md-2 header-item">Method</div>
+        <div class="col-md-2 header-item">Url</div>
+        <div class="col-md-3 header-item">Body</div>
+        <div class="col-md-3 header-item">Headers</div>
+    </div>
+    {{#each requests}}
+    <div class="row table-row">
+        <div class="col-md-2 row-item">{{this.timestamp}}</div>
+        <div class="col-md-2 row-item">{{this.method}}</div>
+        <div class="col-md-2 row-item">{{this.url}}</div>
+        <div class="col-md-3 row-item">{{json this.body}}</div>
+        <div class="col-md-3 row-item">{{json this.headers}}</div>
+    </div>
+    {{/each}}
+</div>

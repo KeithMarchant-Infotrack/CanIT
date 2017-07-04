@@ -13,8 +13,14 @@ const config = require('../config.json');
 
 // Configure views
 
-app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+
+app.engine('handlebars', expressHandlebars({
+    defaultLayout: 'main',
+    helpers: {
+        json: (c: any) => JSON.stringify(c)
+    }
+}));
 
 // Configure static content
 

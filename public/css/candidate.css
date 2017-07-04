@@ -1,0 +1,11 @@
+.requests-table .table-row {
+    word-break: break-word;
+    border-top: 2px solid black;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.requests-table .table-header {
+    font-weight: bold;
+}

@@ -4,6 +4,7 @@ import { Mailer } from '../helpers/mailer.helper';
 import * as multer from 'multer';
 import * as fs from 'fs';
 import * as path from 'path';
+import RequestModel from '../models/request.model';
 
 const destination = 'uploads';
 const upload = multer({ dest: destination });
@@ -72,6 +73,12 @@ controller.get('/:userId/project', async (req, res) => {
 
     res.setHeader('Content-Type', 'application/zip');
     fs.createReadStream(path.join(destination, candidate.file)).pipe(res);
+});
+
+controller.get('/:userId/requests', async (req, res) => {
+    const requests = await RequestModel.find({ candidate: req.params.userId });
+
+    res.render('candidate/requests', { requests, css: '/css/candidate.css' });
 });
 
 export default controller;
