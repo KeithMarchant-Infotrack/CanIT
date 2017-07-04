@@ -1,5 +1,5 @@
 import { Document, Schema, Model, model } from 'mongoose';
-import * as jwt from 'jwt-simple';
+import { Tokeniser } from '../helpers/auth.helper';
 
 interface ICandidate {
     email: string;
@@ -7,7 +7,7 @@ interface ICandidate {
     file: string;
 }
 
-interface ICandidateModel extends ICandidate, Document { }
+export interface ICandidateModel extends ICandidate, Document { }
 
 const candidateSchema = new Schema({
     email: { type: String, required: true, unique: true },
@@ -15,18 +15,10 @@ const candidateSchema = new Schema({
     file: String
 }).pre('save', function(next) {
     if (!this.token) {
-        this.token = generateToken(this.email);
+        this.token = Tokeniser.generate(this);
     }
     next();
 });
-
-const generateToken = (email: string) => {
-    const payload = { email };
-    const secret = 'NOT_A_VERY_SECRET_TOKEN';
-    const token = jwt.encode(payload, secret);
-
-    return token;
-};
 
 const candidateModel = model<ICandidateModel>('Candidate', candidateSchema);
 
