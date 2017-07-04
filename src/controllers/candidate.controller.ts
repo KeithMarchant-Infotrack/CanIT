@@ -1,5 +1,5 @@
 import * as express from 'express';
-import candidateModel from '../models/candidate.model';
+import CandidateModel from '../models/candidate.model';
 import { Mailer } from '../helpers/mailer.helper';
 import * as multer from 'multer';
 import * as fs from 'fs';
@@ -11,7 +11,7 @@ const upload = multer({ dest: destination });
 const controller = express.Router();
 
 controller.post('/', async (req, res) => {
-    const candidate = await candidateModel.create({ email: req.body.email });
+    const candidate = await CandidateModel.create({ email: req.body.email });
 
     const mailerOptions = {
         to: candidate.email,
@@ -29,7 +29,7 @@ controller.get('/', (req, res) => {
 });
 
 controller.get('/:userId', async (req, res) => {
-    const candidate = await candidateModel.findById(req.params.userId);
+    const candidate = await CandidateModel.findById(req.params.userId);
 
     if (!candidate) {
         res.status(404);
@@ -41,7 +41,7 @@ controller.get('/:userId', async (req, res) => {
 
 controller.post('/:userId/upload', upload.single('project'), async (req, res) => {
     const file = req.file.filename;
-    const candidate = await candidateModel.findByIdAndUpdate(req.params.userId, { file }, { new: true });
+    const candidate = await CandidateModel.findByIdAndUpdate(req.params.userId, { file }, { new: true });
 
     if (!candidate) {
         res.status(404);
@@ -52,7 +52,7 @@ controller.post('/:userId/upload', upload.single('project'), async (req, res) =>
 });
 
 controller.get('/:userId/manage', async (req, res) => {
-    const candidate = await candidateModel.findById(req.params.userId);
+    const candidate = await CandidateModel.findById(req.params.userId);
 
     if (!candidate) {
         res.status(404);
@@ -63,7 +63,7 @@ controller.get('/:userId/manage', async (req, res) => {
 });
 
 controller.get('/:userId/project', async (req, res) => {
-    const candidate = await candidateModel.findById(req.params.userId);
+    const candidate = await CandidateModel.findById(req.params.userId);
 
     if (!candidate) {
         res.status(404);

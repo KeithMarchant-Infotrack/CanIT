@@ -1,7 +1,10 @@
 import * as express from 'express';
 import roomModel from '../models/room.model';
+import validator from '../middleware/validator.middleware';
 
 const roomController = express.Router();
+
+roomController.use(validator);
 
 roomController.post('/', async (req, res) => {
     const newRoom = await roomModel.create(req.body);
