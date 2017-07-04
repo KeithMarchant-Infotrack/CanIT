@@ -2,11 +2,11 @@
     <tr>
         <th>ID</th>
         <th>Email</th>
-        <th>File</th>
+        <th>Project</th>
     </tr>
     <tr>
         <td>{{id}}</td>
         <td>{{email}}</td>
-        <td>{{#if file}}{{file}}{{/if}}</td>
+        <td>{{#if file}}<a href="/candidates/{{id}}/project">Download</a>{{/if}}</td>
     </tr>
 </table>

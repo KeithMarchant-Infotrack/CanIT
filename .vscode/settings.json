@@ -4,6 +4,7 @@
         "node_modules": true,
         "package-lock.json": true,
         "out": true,
-        "public/build": true
+        "public/build": true,
+        "uploads": true
     }
 }
