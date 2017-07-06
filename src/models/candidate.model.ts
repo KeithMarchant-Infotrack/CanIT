@@ -1,9 +1,10 @@
 import { Document, Schema, Model, model } from 'mongoose';
 import { Tokeniser } from '../helpers/auth.helper';
+import * as crypto from 'crypto';
 
 interface ICandidate {
     email: string;
-    token: string;
+    secret: string;
     file: string;
 }
 
@@ -11,12 +12,11 @@ export interface ICandidateModel extends ICandidate, Document { }
 
 const candidateSchema = new Schema({
     email: { type: String, required: true, unique: true },
-    token: String,
+    secret: String,
     file: String
 }).pre('save', function(next) {
-    if (!this.token) {
-        this.token = Tokeniser.generate(this);
-    }
+    this.secret = crypto.randomBytes(20).toString('hex');
+    this.token = Tokeniser.generate(this);
     next();
 });
 
